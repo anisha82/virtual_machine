@@ -21,7 +21,7 @@ jobs:
 
     # Step 3: Build the Virtual Machine
     - name: Compile the C++ code
-      run: g++ -o virtual_machine main.cpp
+      run: g++ -o virtual_machine src/main.cpp
 
     # Step 4: Run the program
     - name: Run Virtual Machine
