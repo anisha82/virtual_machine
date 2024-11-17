@@ -1,4 +1,4 @@
-name: C++ CI
+name: C++ CI with Docker
 
 on:
   push:
@@ -8,21 +8,20 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     # Step 1: Check out the repository
     - uses: actions/checkout@v4
 
-    # Step 2: Install dependencies
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y build-essential g++
+    # Step 2: Set up Docker Buildx
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-    # Step 3: Build the Virtual Machine
-    - name: Compile the C++ code
-      run: g++ -o virtual_machine src/main.cpp
+    # Step 3: Build the Docker image
+    - name: Build Docker image
+      run: docker build -t virtual-machine .
 
-    # Step 4: Run the program
-    - name: Run Virtual Machine
-      run: ./virtual_machine
+    # Step 4: Run the Docker container
+    - name: Run Virtual Machine in Docker
+      run: docker run --rm virtual-machine
