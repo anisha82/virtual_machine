@@ -13,5 +13,5 @@ RUN apt-get update && apt-get install -y build-essential
 # Compile the program inside the src directory
 RUN g++ -o virtual_machine ./src/main.cpp
 
-# Set the default command to run your program
-CMD ["./virtual_machine"]
+# Set the default command to run your program with the input file
+CMD ["./virtual_machine", "program.vm"]
