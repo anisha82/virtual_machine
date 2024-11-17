@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the source folder into the container
 COPY src/ ./src
 
+# Copy the program file into the container (make sure it's in the same directory as Dockerfile)
+COPY program.vm ./program.vm
+
 # Install dependencies (if needed)
 RUN apt-get update && apt-get install -y build-essential
 
