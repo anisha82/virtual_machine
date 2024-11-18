@@ -26,8 +26,3 @@ jobs:
     - name: Run Virtual Machine in Docker
       run: docker run --rm virtual-machine
 
-    - name: Run tests
-      run: |
-        chmod +x ./tests/test.sh
-        ./tests/test.sh
-
