@@ -4,17 +4,22 @@ FROM gcc:latest
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the source folder into the container
+# Copy the source folder and program file into the container
 COPY src/ ./src
-
-# Copy the program file into the container (make sure it's in the same directory as Dockerfile)
 COPY program.vm ./program.vm
 
 # Install dependencies (if needed)
-RUN apt-get update && apt-get install -y build-essential
+RUN apt-get update && apt-get install -y build-essential && rm -rf /var/lib/apt/lists/*
 
 # Compile the program inside the src directory
 RUN g++ -o virtual_machine ./src/main.cpp
 
-# Set the default command to run your program with the input file
-CMD ["./virtual_machine", "program.vm"]
+# Ensure the executable has the correct permissions
+RUN chmod +x virtual_machine
+
+# Optional: Debugging to check file paths
+RUN ls -l /app
+
+# Set the default command to run your program
+ENTRYPOINT ["./virtual_machine"]
+CMD ["program.vm"]

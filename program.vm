@@ -1,5 +1,10 @@
-LDA 10      // Load the value 10 into register A
-LDB 5       // Load the value 5 into register B
-ADD         // Add the values in A and B, store the result in A
-PRN         // Print the value of register A (which should be 15)
-HLT         // Halt the program
+1 10   // LDA 10: Load 10 into register A
+2 10   // LDB 10: Load 10 into register B
+5      // CMP: Compare A and B (sets zero flag Z)
+7 6    // JZ 6: Jump to address 6 if Z is true
+1 0    // LDA 0: Load 0 into register A (this runs if comparison fails)
+8      // PRN: Print register A
+0      // HLT: Halt the execution
+1 1    // LDA 1: Load 1 into register A (this runs if Z is true)
+8      // PRN: Print register A
+0      // HLT: Halt the execution
