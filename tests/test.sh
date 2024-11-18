@@ -8,8 +8,11 @@ run_test() {
 
     echo "Running Test: $test_name"
     echo $bytecode > program.vm  # Save bytecode to a file
-    output=$(docker run --rm -v $(pwd):/app virtual-machine ./virtual_machine program.vm)
 
+    # Run the Docker container and capture the output
+    output=$(docker run --rm -v $(pwd):/app virtual-machine ./virtual_machine program.vm 2>&1)
+
+    # Compare the output with the expected output
     if [[ "$output" == "$expected_output" ]]; then
         echo "✅ $test_name PASSED"
     else
